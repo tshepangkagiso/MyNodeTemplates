@@ -1,0 +1,42 @@
+Creating a flowchart for your code can be a bit challenging due to the complexity of the code and the interactions between different parts of the program. However, I can provide you with a simplified flowchart that represents the main components and the flow of your Express.js application. Please note that this flowchart will not capture all the details of your code but will give you a high-level overview.
+
+Here's a textual representation of the flowchart:
+
+1. Start
+2. Start Express Application
+3. Load Environment Variables using `dotenv`
+4. Initialize Express Application
+5. Set up Middleware (`express.json()`)
+6. Define `posts` array and token arrays (`accessTokens` and `refreshTokens`)
+7. Define `generateAccessToken` function
+8. Define `generateRefreshToken` function
+9. Define `/login` endpoint
+   - Receive a POST request
+   - Extract `username` from the request body
+   - Generate an Access Token and Refresh Token
+   - Store Refresh Token in `refreshTokens` array
+   - Send Access Token and Refresh Token in the response
+10. Define `/logout` endpoint
+   - Receive a DELETE request
+   - Remove Refresh Token from `refreshTokens` array
+   - Clear both `refreshTokens` and `accessTokens` arrays
+   - Send a success or failure response
+11. Define `authenticateToken` middleware
+   - Receive a GET request with an Access Token
+   - Verify the Access Token
+   - If valid, set `req.user` with user data and continue to the next middleware
+   - If invalid, return a 403 or 401 response
+12. Define `/posts` endpoint with `authenticateToken` middleware
+   - Receive a GET request
+   - Filter posts for the authenticated user
+   - Send filtered posts as a response
+13. Define `authRefreshToken` function
+   - Receive a Refresh Token
+   - Verify the Refresh Token
+   - If valid, generate a new Access Token
+   - Store the new Access Token in `accessTokens`
+   - Send the new Access Token in the response
+14. Start Express Server on port 3000
+15. Server Running on Port 3000
+
+Please note that this is a simplified flowchart, and it doesn't cover all possible error conditions or edge cases. The actual implementation of the code may have additional details and error handling not represented in this flowchart. Additionally, the flowchart does not cover the initialization of environment variables or the structure of the Express application, which may include other routes and middlewares.
